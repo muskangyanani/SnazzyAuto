@@ -45,6 +45,9 @@ while True:
           choice = int(input("Enter your choice of optional extras (1-6): "))
           if 1<= choice <=5:
             selected_extra = list(optional_extras.keys())[choice - 1]
+            if (selected_extra in extras_choice):
+              print("You have already selected this extra, Please select another one!")
+              continue
             extras_choice.append(selected_extra)
             print(f"-------{selected_extra} added, with Price: Rs. {optional_extras[selected_extra]}-------")
           elif choice == 6:
@@ -132,7 +135,7 @@ while True:
                 for idx, key in enumerate(optional_left):
                   print(f"{idx+1} . {key:<25}: Rs. {optional_extras[key]}")
                 while True:
-                  choice = int(input("Enter your choice of optional extras (1-6): "))
+                  choice = int(input("Enter your choice of optional extras: "))
                   if 1<= choice <=len(optional_left):
                     selected_extra = list(optional_left)[choice - 1]
                     extras_choice.append(selected_extra)

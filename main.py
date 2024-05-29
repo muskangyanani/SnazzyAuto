@@ -17,6 +17,7 @@ buyer = {}
 while True:
   try:
     print("-------Welcome to Snazzy Autos-------")
+    
     # select the model
     print("Select the model you want to buy: ")
     print("MODEL             PRICE")
@@ -61,14 +62,15 @@ while True:
       buyer['Extras'] = extras_choice
       total_price = buyer['base_price']
       for extras in extras_choice:
-        total_price += optional_extras[extras]
+        total_price += optional_extras[extras] 
+
+      buyer['total_price'] = total_price
 
       print(f"-------The total Price including all the Extras is: Rs. {total_price} lakhs-------")
 
       # Trade in old car
       while(True):
-        print("Do you have an old car to trade (yes/no): ")
-        ans = input()
+        ans = input("Do you have an old car to trade (yes/no): ")
         if ans == 'yes':
           old_car_to_trade = True
           while True:
@@ -97,8 +99,7 @@ while True:
 
       # Repeat Customer
       while True:
-        print("Are you a regular customer (yes/no): ")
-        ans = input()
+        ans = input("Are you a regular customer (yes/no): ")
         if ans == 'yes':
           discount_for_repeat_customer = total_price * (10/100)
           total_price -= discount_for_repeat_customer
@@ -107,13 +108,14 @@ while True:
         elif ans == 'no':
           break
         else:
-          print("Enter valid input (yes/no))")
-          
+          print("Enter valid input (yes/no)")
+      buyer['total_price'] = total_price
+
       # Payment method
       while True:
         try:
           print("Select the payment method: ")
-          print("1. Pay full Amount now, recieve cashback of 1%")
+          print("1. Pay full Amount now")
           print("2. Equal monthly payments over 4 years (no extra charges)")
           print("3. Equal monthly payments over 7 years, total price increased by 5%")
 
@@ -139,7 +141,7 @@ while True:
                   if 1<= choice <=len(optional_left):
                     selected_extra = list(optional_left)[choice - 1]
                     extras_choice.append(selected_extra)
-                    print(f"-------You have selected {selected_extra}, with Price: Rs. {optional_extras[selected_extra]}-------")
+                    print(f"-------You have selected {selected_extra}, with Price: Rs. {optional_extras[selected_extra]} for FREE!-------")
                     break
                   else:
                     print("Invalid choise, please enter value again!")
@@ -159,7 +161,8 @@ while True:
           print(f"-------Your payment method is: {buyer['payment_method']}-------")
         except:
           print("Enter valid input between 1-3!!")
-        
+      buyer['total_price'] = total_price
+       
       print(f"\nYour order details are: \n")
       for data in buyer:
         print(f"{data :<25} {buyer[data]}")
